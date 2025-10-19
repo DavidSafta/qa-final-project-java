@@ -1,0 +1,14 @@
+﻿# build-uri / IDE
+target/
+.idea/
+.vscode/
+*.iml
+
+# Git & OS
+.git/
+.gitignore
+.DS_Store
+Thumbs.db
+
+# Altele pe care nu le vrem în imagine
+README.md
