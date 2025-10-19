@@ -1,2 +1,69 @@
+[![CI Pipeline for QA Project](https://github.com/DavidSafta/qa-final-project-java/actions/workflows/ci.yml/badge.svg)](https://github.com/DavidSafta/qa-final-project-java/actions/workflows/ci.yml)
+
 # qa-final-project-java
-Tema 3
+
+Proiect intermediar (Tema 3) – proiect Java/Maven containerizat, cu pipeline CI/CD (GitHub Actions) care:
+- rulează `mvn test` (simulat pentru tema aceasta),
+- construiește imaginea Docker (Maven + JDK 17),
+- **publică** imaginea în Docker Hub: `davidsafta/qa-final-project-java:latest`.
+
+---
+
+## Structură
+config/app.yaml
+data/.gitkeep
+src/test/java/com/davidsafta/tests/ApiTest.txt (pseudocod Arrange–Act–Assert)
+Dockerfile
+pom.xml
+.github/workflows/ci.yml
+
+yaml
+Copy code
+
+## Config (YAML)
+`config/app.yaml`:
+```yaml
+env: dev
+
+service:
+  baseUrl: https://jsonplaceholder.typicode.com
+
+timeouts:
+  connectMs: 5000
+  readMs: 5000
+Pseudotest API (Arrange–Act–Assert)
+src/test/java/com/davidsafta/tests/ApiTest.txt descrie:
+
+Arrange: env=dev, baseUrl + endpoint /todos/1, timeouts.
+
+Act: GET către {baseUrl}{endpoint}.
+
+Assert: status 200 și răspunsul conține câmpul title nenul.
+
+Notă: pentru această temă rulăm simulat mvn test (nu există cod de testare Java real).
+
+Build & Run local (opțional)
+bash
+Copy code
+docker build -t davidsafta/qa-final-project-java:latest .
+docker run --rm davidsafta/qa-final-project-java:latest
+CI/CD (GitHub Actions)
+Workflow: .github/workflows/ci.yml
+
+Joburi:
+
+test – mvn -q test (simulat)
+
+build-and-push (needs: test) – construiește și publică în Docker Hub.
+
+Secrete necesare (Settings → Secrets and variables → Actions):
+
+DOCKERHUB_USERNAME = username Docker Hub
+
+DOCKERHUB_TOKEN = Personal Access Token (permisiuni Read/Write/Delete)
+
+Tag publicat: davidsafta/qa-final-project-java:latest
+
+bash
+Copy code
+docker pull davidsafta/qa-final-project-java:latest
