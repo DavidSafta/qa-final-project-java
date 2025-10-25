@@ -68,3 +68,10 @@ Status CI/CD: vezi badge-ul de sus (trebuie să fie passing verde).
 Notițe Docker
 Proiectul include .dockerignore pentru builduri rapide și imagini mai mici (excludem fișiere de IDE, .git etc).
 
+## Session 6 – Username Validator
+Fișier: `src/main/java/com/davidsafta/homework/UsernameValidator.java`
+
+Cum rulezi (IntelliJ):
+Run ▶ pe metoda `main` din `UsernameValidator`. 
+Programul cere username și afișează erori până când inputul respectă regulile; apoi confirmă “Username acceptat”.
+
