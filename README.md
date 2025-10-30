@@ -75,3 +75,14 @@ Cum rulezi (IntelliJ):
 Run ▶ pe metoda `main` din `UsernameValidator`. 
 Programul cere username și afișează erori până când inputul respectă regulile; apoi confirmă “Username acceptat”.
 
+locațiile fișierelor:
+
+src/main/java/com/davidsafta/homework/BrowserType.java
+
+src/main/java/com/davidsafta/homework/BrowserConfig.java
+
+src/main/java/com/davidsafta/homework/TestConfigRunner.java
+
+cum rulezi: Run → TestConfigRunner.main (afişează 4 linii cu configurațiile).
+
+mențiune că enum + 3 constructori supraîncărcați + metoda statică “factory” + metoda de afișare sunt implementate.
