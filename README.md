@@ -86,3 +86,22 @@ src/main/java/com/davidsafta/homework/TestConfigRunner.java
 cum rulezi: Run → TestConfigRunner.main (afişează 4 linii cu configurațiile).
 
 mențiune că enum + 3 constructori supraîncărcați + metoda statică “factory” + metoda de afișare sunt implementate.
+
+## Session 8 – User repository & validation
+
+Fișiere:
+- `src/main/java/com/davidsafta/homework/User.java`
+- `src/main/java/com/davidsafta/homework/AdminUser.java`
+- `src/main/java/com/davidsafta/homework/UserRepository.java`
+- `src/main/java/com/davidsafta/homework/InvalidUserDataException.java`
+- `src/main/java/com/davidsafta/homework/Main.java`
+
+Cum rulezi (IntelliJ):
+- Rulezi metoda `main` din clasa `Main`.
+
+Ce face:
+- Adaugă un user valid și un admin valid în `UserRepository`.
+- Încearcă să adauge un user cu username prea scurt → aruncă `InvalidUserDataException`.
+- Încearcă să adauge un user cu vârstă negativă → aruncă `InvalidUserDataException`.
+- La final afișează în consolă lista de utilizatori validați din repository.
+
