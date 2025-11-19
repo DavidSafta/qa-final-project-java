@@ -14,19 +14,27 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- >>> ADD aici dependențele (inclusiv TestNG) -->
     <dependencies>
+        <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.10.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Oprește mesajele SLF4J ("Failed to load class org.slf4j.impl.StaticLoggerBinder") -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>1.7.36</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-    <!-- <<< END dependencies -->
 
     <build>
         <plugins>
+            <!-- Rulează doar fișiere care se termină cu *Test.java -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
