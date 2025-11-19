@@ -105,3 +105,27 @@ Ce face:
 - Încearcă să adauge un user cu vârstă negativă → aruncă `InvalidUserDataException`.
 - La final afișează în consolă lista de utilizatori validați din repository.
 
+## Session 9–10 – TestNG sanity + repository tests
+
+### Fișiere test:
+- `src/test/java/com/davidsafta/tests/SanityTest.java`
+- `src/test/java/com/davidsafta/tests/UserRepositoryTest.java`
+- `src/test/java/com/davidsafta/tests/AdminUserTest.java`
+
+### Ce verifică:
+- **SanityTest**: verificare simplă cu TestNG (assert 2+3=5).
+- **UserRepositoryTest**:
+  - `addValidUser_increasesSize` – după add, mărimea colecției crește.
+  - `addUser_withTooShortUsername_throws` – aruncă `InvalidUserDataException`.
+  - `addUser_withNegativeAge_throws` – aruncă `InvalidUserDataException`.
+- **AdminUserTest**:
+  - `adminUser_toString_containsPermissionLevel` – `toString()` conține „permissionLevel/full_access”.
+  - `adminUser_addToRepository_isAccepted` – adăugarea în `UserRepository` reușește.
+
+### Cum rulezi (IntelliJ):
+- Click dreapta pe `test` folder → **Run 'All Tests'** (sau rulezi individual pe fiecare clasă).
+- Toate testele trebuie să fie verzi.
+
+### CI/CD
+- GitHub Actions rulează „Run Maven tests (simulated)” + build imagine Docker.
+- Badge-ul pentru ultimul run trebuie să fie verde în tabul **Actions**.
