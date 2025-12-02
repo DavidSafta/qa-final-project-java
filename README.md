@@ -130,7 +130,7 @@ Ce face:
 - GitHub Actions rulează „Run Maven tests (simulated)” + build imagine Docker.
 - Badge-ul pentru ultimul run trebuie să fie verde în tabul **Actions**.
 
-## Session 11–12 – PostValidator (OOP + TestNG)
+## Session 11–12 — PostValidator (OOP + TestNG)
 
 Fișiere:
 - `src/main/java/com/davidsafta/homework/PostValidator.java`
@@ -139,27 +139,23 @@ Fișiere:
 Cerințe implementate:
 - `validate(String title, String content)`:
   - aruncă `IllegalArgumentException` dacă:
-    - `title` este null/gol sau are < 5 caractere (mesaj: include "Title must have at least 5")
-    - `content` este null/gol sau are < 10 caractere (mesaj: include "Content must have at least 10")
+    - `title` este null/gol sau are < 5 caractere (mesajul conține „Title must have at least 5”)
+    - `content` este null/gol sau are < 10 caractere (mesajul conține „Content must have at least 10”)
 - `isValid(String title, String content)`:
-  - apelează `validate(...)` și nu aruncă excepții pentru input valid.
+  - apelează `validate(...)` și NU aruncă excepții pentru input valid (returnează `true`).
 
-Teste (TestNG):
-- `PostValidatorTest`:
-  - `validPost_isAccepted` → input valid → `assertTrue(PostValidator.isValid(...))`
-  - `titleTooShort_throws` → așteaptă `IllegalArgumentException` (regex: ".*Title.*least 5.*")
-  - `contentEmpty_throws` → așteaptă `IllegalArgumentException` (regex: ".*Content.*")
-  - `contentTooShort_throws` → așteaptă `IllegalArgumentException` (regex: ".*Content.*")
+Teste (TestNG): `PostValidatorTest`
+- `validPost_isAccepted` → input valid → `assertTrue(PostValidator.isValid(...))`
+- `titleTooShort_throws` → așteaptă `IllegalArgumentException` (regex: `.*Title.*least 5.*`)
+- **Boundary** `titleLengthExactly5_isAccepted` → title exact 5 caractere → acceptat
+- `contentTooShort_throws` → așteaptă `IllegalArgumentException` (regex: `.*Content.*least 10.*`)
+- **Boundary** `contentTrimTo10_isAccepted` → după `trim()` rămân 10 → acceptat
+- **Boundary** `contentTrimTo9_throws` → după `trim()` rămân 9 → aruncă excepție (regex: `.*Content.*least 10.*`)
 
 Cum rulezi (IntelliJ):
-- Click dreapta pe folderul `test` → **Run 'All Tests'**.
+- Click dreapta pe folderul `test` → **Run 'All Tests'** (sau rulezi individual fiecare clasă).
 - Toate testele trebuie să fie verzi.
 
 CI/CD:
-- GitHub Actions rulează `Run Maven tests (simulated)` + build imagine Docker.
+- GitHub Actions rulează „Run Maven tests (simulated)” + build imagine Docker.
 - Badge-ul pentru ultimul run trebuie să fie verde în tabul **Actions**.
-
-Maven (extras):
-- `testng` versiunea `7.10.2`
-- `maven-surefire-plugin` include pattern `**/*Test.java`
-
