@@ -129,3 +129,37 @@ Ce face:
 ### CI/CD
 - GitHub Actions rulează „Run Maven tests (simulated)” + build imagine Docker.
 - Badge-ul pentru ultimul run trebuie să fie verde în tabul **Actions**.
+
+## Session 11–12 – PostValidator (OOP + TestNG)
+
+Fișiere:
+- `src/main/java/com/davidsafta/homework/PostValidator.java`
+- `src/test/java/com/davidsafta/tests/PostValidatorTest.java`
+
+Cerințe implementate:
+- `validate(String title, String content)`:
+  - aruncă `IllegalArgumentException` dacă:
+    - `title` este null/gol sau are < 5 caractere (mesaj: include "Title must have at least 5")
+    - `content` este null/gol sau are < 10 caractere (mesaj: include "Content must have at least 10")
+- `isValid(String title, String content)`:
+  - apelează `validate(...)` și nu aruncă excepții pentru input valid.
+
+Teste (TestNG):
+- `PostValidatorTest`:
+  - `validPost_isAccepted` → input valid → `assertTrue(PostValidator.isValid(...))`
+  - `titleTooShort_throws` → așteaptă `IllegalArgumentException` (regex: ".*Title.*least 5.*")
+  - `contentEmpty_throws` → așteaptă `IllegalArgumentException` (regex: ".*Content.*")
+  - `contentTooShort_throws` → așteaptă `IllegalArgumentException` (regex: ".*Content.*")
+
+Cum rulezi (IntelliJ):
+- Click dreapta pe folderul `test` → **Run 'All Tests'**.
+- Toate testele trebuie să fie verzi.
+
+CI/CD:
+- GitHub Actions rulează `Run Maven tests (simulated)` + build imagine Docker.
+- Badge-ul pentru ultimul run trebuie să fie verde în tabul **Actions**.
+
+Maven (extras):
+- `testng` versiunea `7.10.2`
+- `maven-surefire-plugin` include pattern `**/*Test.java`
+
