@@ -1,29 +1,25 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.davidsafta</groupId>
-    <artifactId>qa-final-project</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>qa-final-project</name>
+    <artifactId>hapifyme-bdd-ui</artifactId>
+    <version>1.0.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- versiuni închise la zi -->
         <cucumber.version>7.14.0</cucumber.version>
-        <testng.version>7.10.2</testng.version>
-        <selenide.version>7.3.1</selenide.version>
-        <slf4j.version>2.0.13</slf4j.version>
-        <surefire.version>3.2.5</surefire.version>
+        <selenide.version>7.0.4</selenide.version>
+        <junit.version>4.13.2</junit.version>
     </properties>
 
     <dependencies>
-        <!-- Cucumber + TestNG -->
+        <!-- Cucumber -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -32,47 +28,50 @@
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-testng</artifactId>
+            <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- TestNG -->
+        <!-- PicoContainer (opțional, dar ok) -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- Selenide (gestionează și driverele automat) -->
+        <!-- Selenide -->
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>${selenide.version}</version>
+            <scope>test</scope>
         </dependency>
 
-        <!-- Console logging simplu (scapă de WARN-urile SLF4J) -->
+        <!-- JUnit 4 (NU TestNG) -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Rulează atât *Test.java cât și *Runner.java (Cucumber) -->
+            <!-- Surefire rulează runnerul JUnit/Cucumber -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire.version}</version>
+                <version>3.2.5</version>
                 <configuration>
                     <includes>
-                        <include>**/*Test.java</include>
-                        <include>**/*Runner.java</include>
+                        <include>**/TestRunner.java</include>
                     </includes>
+                    <systemPropertyVariables>
+                        <selenide.headless>false</selenide.headless>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
