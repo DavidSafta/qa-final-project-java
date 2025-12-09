@@ -159,3 +159,63 @@ Cum rulezi (IntelliJ):
 CI/CD:
 - GitHub Actions rulează „Run Maven tests (simulated)” + build imagine Docker.
 - Badge-ul pentru ultimul run trebuie să fie verde în tabul **Actions**.
+
+# qa-final-project-java
+
+Proiect final pentru modulul Cucumber + Selenide (HapifyMe).
+
+## Tech stack
+- Java
+- Maven
+- Cucumber
+- Selenide
+- JUnit
+
+## Structură
+- `src/test/java/com/davidsafta/core`
+  - `Hooks.java`
+  - `ConfigManager.java`
+- `src/test/java/com/davidsafta/pages`
+  - `LoginPage.java`
+  - `FeedPage.java`
+  - `ProfilePage.java`
+- `src/test/java/com/davidsafta/steps`
+  - `LoginSteps.java`
+  - `PostSteps.java`
+  - `ProfileSteps.java`
+- `src/test/java/com/davidsafta/runners`
+  - `TestRunner.java`
+- `src/test/resources/features`
+  - `login.feature`
+  - `post.feature`
+  - `profile.feature`
+- `src/test/resources`
+  - `config.properties`
+
+## Scenarii implementate
+1. **Login pozitiv** cu credențiale valide  
+2. **Creare postare** folosind Scenario Outline (2 exemple)  
+3. **Actualizare profil** folosind DataTable
+
+## Configurare
+Setările se află în:
+- `src/test/resources/config.properties`
+
+Include:
+- `baseUrl`
+- `browser`
+- `headless`
+- `timeout`
+- credențialele de test
+
+## Rulare teste
+Rulează clasa:
+- `com.davidsafta.runners.TestRunner`
+
+Rezultat așteptat:
+- **4 tests passed**
+- **exit code 0**
+
+## CI
+Pipeline-ul este configurat în GitHub Actions și rulează automat la push.
+
