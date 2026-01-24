@@ -221,3 +221,33 @@ Rezultat așteptat:
 ### CI
 Pipeline-ul rulează automat la push în GitHub Actions.
 
+# HapifyMe API – Final Project (Modulul 4)
+
+Acest proiect conține teste automate pentru API-ul de test **HapifyMe**, realizate ca temă pentru Modulul 4 (API Testing).
+
+Testul principal acoperă **fluxul complet de utilizator**:
+- register → confirm email → login → get profile → update profile → get profile (după update) → delete profile
+
+---
+
+## Tehnologii folosite
+
+- **Java**
+- **Maven**
+- **TestNG**
+- **RestAssured** – pentru testarea API-ului
+- **Awaitility** – pentru a aștepta asincron generarea token-ului de confirmare atunci când nu vine direct în răspuns
+- **Jackson** – pentru maparea răspunsurilor JSON în POJO-uri (`RegisterResponse`, `LoginResponse`, `DeleteResponse`)
+
+---
+
+## Locația testului principal
+
+Clasa de test pentru fluxul complet este:
+
+`src/test/java/api/tests/HapifyMeFullFlowTest.java`
+
+Metoda de test:
+
+```java
+public void register_confirm_login_get_profile_update_and_delete_profile()
