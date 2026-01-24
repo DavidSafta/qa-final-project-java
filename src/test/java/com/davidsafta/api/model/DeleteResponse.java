@@ -2,6 +2,14 @@ package com.davidsafta.api.model;
 
 public class DeleteResponse {
 
-    public String status;
-    public String message;
+    private String status;
+    private String message;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

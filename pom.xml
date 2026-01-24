@@ -1,7 +1,6 @@
 ﻿<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.davidsafta</groupId>
@@ -17,12 +16,11 @@
         <selenide.version>7.0.4</selenide.version>
         <junit.version>4.13.2</junit.version>
 
-        <!-- Pentru tema REST Assured + TestNG -->
+        <!-- Pentru API tests -->
         <restassured.version>5.4.0</restassured.version>
         <testng.version>7.10.2</testng.version>
-
-        <!-- Pentru Awaitility (tema 19) -->
         <awaitility.version>4.2.0</awaitility.version>
+        <jackson.version>2.17.2</jackson.version>
     </properties>
 
     <dependencies>
@@ -40,7 +38,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- PicoContainer (opțional, dar ok) -->
+        <!-- PicoContainer (Cucumber DI) -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-picocontainer</artifactId>
@@ -48,7 +46,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Selenide -->
+        <!-- Selenide (UI) -->
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
@@ -56,7 +54,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit 4 (pentru runner-ul Cucumber) -->
+        <!-- JUnit 4 – runner pentru Cucumber -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -64,15 +62,13 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- REST Assured -->
+        <!-- REST Assured + JSON Path (API) -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${restassured.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- JSON Path (folosit cu REST Assured) -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-path</artifactId>
@@ -80,15 +76,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Jackson pentru serializare POJO -> JSON (REST Assured) -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.17.2</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- TestNG (pentru tema 19 – teste API) -->
+        <!-- TestNG – runner pentru testele de API -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -96,27 +84,35 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Awaitility (pentru așteptări async, dacă ai nevoie) -->
+        <!-- Awaitility – așteptare async pentru /user/retrieve_token.php -->
         <dependency>
             <groupId>org.awaitility</groupId>
             <artifactId>awaitility</artifactId>
             <version>${awaitility.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Jackson – ca să meargă @JsonProperty în POJO-uri -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Surefire rulează runnerul JUnit/Cucumber + testele *Test.java (REST) -->
+            <!-- Surefire rulează:
+                 - TestRunner (Cucumber + Selenide)
+                 - toate clasele *Test.java (REST Assured + TestNG) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
                     <includes>
-                        <!-- Runner Cucumber + Selenide (UI) -->
                         <include>**/TestRunner.java</include>
-                        <!-- Teste REST Assured (TestNG / JUnit) -->
                         <include>**/*Test.java</include>
                     </includes>
                     <systemPropertyVariables>

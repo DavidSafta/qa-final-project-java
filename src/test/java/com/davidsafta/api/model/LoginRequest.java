@@ -2,11 +2,25 @@ package com.davidsafta.api.model;
 
 public class LoginRequest {
 
-    public String username;
-    public String password;
+    private String email;
+    private String password;
+    private String apiKey;
 
-    public LoginRequest(String username, String password) {
-        this.username = username;
+    public LoginRequest(String email, String password, String apiKey) {
+        this.email = email;
         this.password = password;
+        this.apiKey = apiKey;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getApiKey() {
+        return apiKey;
     }
 }
