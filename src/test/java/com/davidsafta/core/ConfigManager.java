@@ -51,7 +51,7 @@ public class ConfigManager {
 
     // ------- settings Selenide -------
     public static String baseUrl() {
-        return get("baseUrl", "https://test.hapifyme.com");
+        return get("baseUrl", "https://apps.qualiadept.eu/hapifyme");
     }
 
     public static String browser() {

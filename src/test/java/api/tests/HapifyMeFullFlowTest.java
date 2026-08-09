@@ -19,7 +19,7 @@ public class HapifyMeFullFlowTest {
     @BeforeClass
     public void setup() {
         // Baza pentru toate request-urile API
-        RestAssured.baseURI = "https://test.hapifyme.com/api";
+        RestAssured.baseURI = "https://apps.qualiadept.eu/hapifyme/api";
     }
 
     @Test

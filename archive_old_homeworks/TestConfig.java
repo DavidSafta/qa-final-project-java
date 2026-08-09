@@ -7,7 +7,7 @@ public class TestConfig {
     @Before("@ui")
     public void selenideSetUp() {
         // baseUrl pentru UI (NU /api)
-        Configuration.baseUrl = "https://test.hapifyme.com";
+        Configuration.baseUrl = "https://apps.qualiadept.eu/hapifyme";
         Configuration.browserSize = "1366x768";
         Configuration.timeout = 8000;
         // Dacă vrei fără fereastră: Configuration.headless = true;
