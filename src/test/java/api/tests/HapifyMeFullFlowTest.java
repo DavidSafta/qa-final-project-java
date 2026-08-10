@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.await;
+import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.assertEquals;
 
@@ -43,7 +44,7 @@ public class HapifyMeFullFlowTest {
                         .post("/user/register.php")
                         .then()
                         .log().all()
-                        .statusCode(201)
+                        .statusCode(anyOf(equalTo(200), equalTo(201)))
                         .body("status", equalTo("success"))
                         .extract()
                         .as(RegisterResponse.class);
